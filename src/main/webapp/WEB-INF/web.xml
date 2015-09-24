@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container,
+     see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.mycompany.mazkrest</param-value>
+        </init-param>
+        <init-param>
+		<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+		<param-value>true</param-value>
+	</init-param>
+        
+        
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>Jersey Spring Web Application</servlet-name>
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+        <init-param>
+                <param-name>com.sun.jersey.spi.container.ResourceFilters</param-name>
+                <param-value>com.sun.jersey.api.container.filter.RolesAllowedResourceFilterFactory</param-value>
+        </init-param>
+</servlet>
+    <security-constraint> 
+    
+    <web-resource-collection> 
+        <web-resource-name>Protected resources</web-resource-name> 
+        <url-pattern>/webresources/usuario/*</url-pattern>
+        <url-pattern>/webresources/pergunta/*</url-pattern>
+        <url-pattern>/webresources/respostas/*</url-pattern>
+        </web-resource-collection>
+       
+      <auth-constraint>
+             <role-name>*</role-name>
+              
+                
+        </auth-constraint>
+    
+
+    
+</security-constraint>
+<security-role>
+        <role-name>Administrador</role-name>
+        
+    </security-role>
+    <security-role>
+        <role-name>Tutor</role-name>
+        
+    </security-role>
+    <security-role>
+        <role-name>Comum</role-name>
+        
+    </security-role>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/webresources/*</url-pattern>
+    </servlet-mapping>
+            <login-config>
+          <auth-method>BASIC</auth-method>
+          <realm-name>default</realm-name>
+        </login-config>
+       <resource-ref>
+      <description>DB Connection</description>
+      <res-ref-name>jdbc/mysqldb</res-ref-name>
+      <res-type>javax.sql.DataSource</res-type>
+      <res-auth>Container</res-auth>
+  </resource-ref>
+ 
+</web-app>

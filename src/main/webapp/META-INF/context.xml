@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/MazkRest">
+    <!-- Configuração do banco para autenticacao-->
+  <Resource auth="Container" 
+            driverClassName="com.mysql.jdbc.Driver" 
+            maxActive="50" maxIdle="30" maxWait="10000" 
+            name="jdbc/mysqldb" password="yaechaep" 
+            type="javax.sql.DataSource" 
+            url="jdbc:mysql://mysql.sites.ufsc.br:3306/mazk" username="mazk"/>
+ <!--<Resource auth="Container" 
+            driverClassName="com.mysql.jdbc.Driver" 
+            maxActive="50" maxIdle="30" maxWait="10000" name="jdbc/mysqldb" password="mi190495" type="javax.sql.DataSource" url="jdbc:mysql://127.0.0.1:3306/mazk" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="mazk" password="mi190495" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/mazk?zeroDateTimeBehavior=convertToNull" username="root"/>-->
+  <!-- Configuração da tabela de autenticacao, realm-->
+            <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/mysqldb" localDataSource="true" roleNameCol="groupname" userCredCol="senha" userNameCol="email" userRoleTable="view_realm_groups" userTable="view_realm_users"/>
+ 
+</Context>

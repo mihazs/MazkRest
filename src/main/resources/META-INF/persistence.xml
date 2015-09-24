@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.mycompany_MazkRest_war_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>model.entity.Acesso</class>
+    <class>model.entity.Area</class>
+    <class>model.entity.Tipo</class>
+    <class>model.entity.Tentativa</class>
+    <class>model.entity.Pergunta</class>
+    <class>model.entity.Alternativa</class>
+    <class>model.entity.Exemplo</class>
+    <class>model.entity.Resposta</class>
+    <class>model.entity.Usuario</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+   
+    <properties>
+       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql.sites.ufsc.br/mazk" />
+  <property name="javax.persistence.jdbc.user" value="mazk" />
+  <property name="javax.persistence.jdbc.password" value="yaechaep" />
+  
+  
+      <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mazk?zeroDateTimeBehavior=convertToNull" />
+  <property name="javax.persistence.jdbc.user" value="root" />
+  <property name="javax.persistence.jdbc.password" value="mi190495" />-->
+      
+  
+  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+  <property name="hibernate.ejb.naming_strategy" value="org.hibernate.cfg.ImprovedNamingStrategy"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.search.default.directory_provider" value="ram"/>
+      <property name="hibernate.search.default.indexBase" value="WEB-INF/indexes/"/>
+      
+    </properties>
+  </persistence-unit>
+</persistence>
